@@ -6,43 +6,9 @@ import toastLogo from '../assets/logo.png';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import 'react-day-picker/lib/style.css';
 
-import io from 'socket.io-client';
-
 // const predictContainer = document.getElementById('predictContainer');
 // const predictButton = document.getElementById('predict-button');
 
-const socketProtocol = (window.location.protocol === 'https') ? 'wss' : 'ws';
-const socket = io(`https://${window.location.host}`, { reconnection: false });
-
-const testSample = [2.668,-114.333,-1.908,4.786,25.707,-45.21,78,0]; // Curveball
-
-// predictButton.onclick = () => {
-//     predictButton.disabled = true;
-//     socket.emit('predictSample', testSample);
-// };
-
-// functions to handle socket events
-socket.on('connect', () => {
-    console.log("connected!!!")
-    // document.getElementById('waiting-msg').style.display = 'none';
-    // document.getElementById('trainingStatus').innerHTML = 'Training in Progress';
-});
-
-// socket.on('trainingComplete', () => {
-//     document.getElementById('trainingStatus').innerHTML = 'Training Complete';
-//     document.getElementById('predictSample').innerHTML = '[' + testSample.join(', ') + ']';
-//     // predictContainer.style.display = 'block';
-// });
-
-socket.on('predictResult', (result) => {
-    console.log("hello world")
-    console.log(result);
-    // plotPredictResult(result);
-});
-
-socket.on('disconnect', () => {
-    console.log("disconnected")
-});
 
 class LearnSubmissionForm extends React.Component {
     constructor(props) {
@@ -60,8 +26,10 @@ class LearnSubmissionForm extends React.Component {
         };
     }
     onSubmit() {
+        console.log("something")
+        this.props.predict();
         // predictButton.disabled = true;
-        socket.emit('predictSample', testSample);
+
 
         // axios.post(`/fnb_submission`, {
         //     name: this.form.name,
