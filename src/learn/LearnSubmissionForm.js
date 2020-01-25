@@ -102,13 +102,13 @@ class LearnSubmissionForm extends React.Component {
                                 </Form.Group>)}
                             </div>
 
-                            <Button variant="primary"
+                            <Button variant="outline-secondary"
                                     onClick={this.appendInput}>
                                 Add Layer
                             </Button>
 
                             <Form.Group controlId="ActFunction">
-                                <Form.Label>Activation Function</Form.Label>
+                                <Form.Label style={{"paddingTop":".5em"}}>Activation Function</Form.Label>
                                 <Form.Control as="select">
                                     <option>Relu</option>
                                     <option>TanH</option>

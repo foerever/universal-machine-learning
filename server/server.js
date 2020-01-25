@@ -3,21 +3,41 @@ require('@tensorflow/tfjs-node');
 // const http = require('http');
 // const socketio = require('socket.io');
 const pitch_type = require('./pitch_type');
+const train = require('./train')
 
 const TIMEOUT_BETWEEN_EPOCHS_MS = 500;
 const PORT = 8000;
 
 var express = require('express');
 var app = express();
+const cors = require('cors');
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
+var bodyParser = require('body-parser');
 
 var path = require('path');
 const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackConfig = require('../webpack.dev.js');
 
+var multer  = require('multer')
+var upload = multer({ dest: './' })
+// var storage = multer.diskStorage({
+//     destination: function (req, file, cb) {
+//       cb(null, './tmp/')
+//     },
+//     filename: function (req, file, cb) {
+//       cb(null, file.fieldname + '-' + Date.now())
+//     }
+//   })
+   
+// var upload = multer({ storage: storage })
+
 const port = process.env.PORT || PORT;
+
+app.use(cors());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // app.use(express.static('public'));
 
@@ -33,6 +53,16 @@ if (process.env.NODE_ENV === 'development') {
 // // remember to run webpack or this path wont find the files needed for the bundle
 app.use(express.static(path.resolve(__dirname, '../public/')))
 
+app.post('/submit', upload.fields([{name: 'dataset', maxCount: 1},
+                                    {name: 'modeljson', maxCount: 1},
+                                    {name: 'weights', maxCount: 1}
+                                ]), function (req, res, next) {
+    console.log("im in the submit request")
+    console.log(req.files.dataset === null ? "null" : "not null");
+    // req.files is array of `photos` files
+    // req.body will contain the text fields, if there were any
+})
+ 
 server.listen(port, () => {
     console.log(`  > Running socket on port: ${port}`);
 });
@@ -62,7 +92,7 @@ async function run() {
     io.emit('trainingComplete', true);
 }
 
-run();
+// run();
 
 
 
