@@ -21,7 +21,7 @@ const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackConfig = require('../webpack.dev.js');
 
 var multer  = require('multer')
-var upload = multer({ dest: './' })
+var upload = multer({ dest: './tmp' })
 // var storage = multer.diskStorage({
 //     destination: function (req, file, cb) {
 //       cb(null, './tmp/')
