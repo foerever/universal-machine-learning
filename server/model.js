@@ -23,19 +23,23 @@ const tf = require('@tensorflow/tfjs-node');
  * @param {number} inputShape The input shape of the model.
  * @returns {tf.Sequential} The multi layer perceptron regression mode  l.
  */
-function createModel(inputShape) {
+function createModel(inputShape, num_layers, activation_arr, units_arr) {
     const model = tf.sequential();
     model.add(tf.layers.dense({
         inputShape: inputShape,
-        activation: 'sigmoid',
-        units: 50,
+        activation: activation_arr[0],
+        units: units_arr[0],
     }));
+
+    for (i = 1; i < num_layers; i++) {
+        model.add(tf.layers.dense({
+            activation: activation_arr[i],
+            units: units_arr[units_arr.length - 1],
+        }));
+    }
+
     model.add(tf.layers.dense({
-        activation: 'sigmoid',
-        units: 50,
-    }));
-    model.add(tf.layers.dense({
-        units: 1,
+        units: units_arr[-1],
     }));
     return model;
 }

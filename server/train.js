@@ -32,7 +32,8 @@ const csvPath = './abalone.csv';
  */
 async function run(epochs, batchSize, savePath) {
     const datasetObj = await createDataset('file://' + csvPath);
-    const model = createModel([datasetObj.numOfColumns]);
+    //num_layers, activation_arr, units_arr
+    const model = createModel([datasetObj.numOfColumns], num_layers, activation_arr, units_arr);
     // The dataset has 4177 rows. Split them into 2 groups, one for training and
     // one for validation. Take about 3500 rows as train dataset, and the rest as
     // validation dataset.
@@ -76,6 +77,7 @@ const args = parser.parseArgs();
 const file = fs.createWriteStream(csvPath);
 https.get(csvUrl, function(response) {
     response.pipe(file).on('close', async () => {
+        //num_layers, activation_arr, units_arr
         run(args.epochs, args.batch_size, args.savePath);
     });
 });
