@@ -16,20 +16,17 @@ The goal of this project is to provide a platform for "universal machine learnin
 
 For the former, we provide an easy-to-use interface for testing and tuning models without using any code. For example, users can experiment with a simple feed-forward neural network by adjusting the number of hidden layers and their parameters (# of units, activation function).
 
-For the latter, TensorFlow.js allows more experienced users to write models themselves using Keras via the Python API. Users can write and compile `Sequential` models as they normally would and save them to the `.h5` format. 
+For the latter, TensorFlow.js allows more experienced users to write models themselves using 2 methods:
 
-Tensorflow.js then provides tools to convert `.h5` files into the Tensorflow.js "Layers format" which consists of:
+1. Using Keras via the Python API. Users can write and compile `Sequential` models as they normally would and save them to the `.h5` format. Tensorflow.js then provides tools to convert `.h5` files into the Tensorflow.js "Layers format" which consists of:
 
 * A `.json` file containing the topology/architecture of model
 
 * A file in binary format containing the weights of the model (Tensorflow.js also allows you to load already-trained models)
 
-Alternatively, users can save and upload their model by directly writing it locally in Tensorflow.js and uploading the `.json` and binary files without any conversion.
+2. Alternatively, users can save and upload their model by directly writing it locally in Tensorflow.js and uploading the `.json` and binary files without any conversion.
 
 Users can then train/validate/test their models as they usually would through the interface.
 
 
 # Technical Details
-
-
-# Usage
