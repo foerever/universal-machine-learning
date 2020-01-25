@@ -11,9 +11,8 @@ import io from 'socket.io-client';
 // const predictContainer = document.getElementById('predictContainer');
 // const predictButton = document.getElementById('predict-button');
 
-const socket =
-    io('http://localhost:8000',
-        {reconnectionDelay: 300, reconnectionDelayMax: 300});
+const socketProtocol = (window.location.protocol === 'https') ? 'wss' : 'ws';
+const socket = io(`${socketProtocol}://${window.location.host}`, { reconnection: false });
 
 const testSample = [2.668,-114.333,-1.908,4.786,25.707,-45.21,78,0]; // Curveball
 
