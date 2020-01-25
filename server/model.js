@@ -34,12 +34,12 @@ function createModel(inputShape, num_layers, activation_arr, units_arr) {
     for (i = 1; i < num_layers; i++) {
         model.add(tf.layers.dense({
             activation: activation_arr[i],
-            units: units_arr[units_arr.length - 1],
+            units: units_arr[i],
         }));
     }
 
     model.add(tf.layers.dense({
-        units: units_arr[-1],
+        units: units_arr[units_arr.length - 1],
     }));
     return model;
 }
