@@ -6,7 +6,46 @@ import toastLogo from '../assets/logo.png';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import 'react-day-picker/lib/style.css';
 
-class FoodSubmissionForm extends React.Component {
+import io from 'socket.io-client';
+
+// const predictContainer = document.getElementById('predictContainer');
+// const predictButton = document.getElementById('predict-button');
+
+const socket =
+    io('http://localhost:8000',
+        {reconnectionDelay: 300, reconnectionDelayMax: 300});
+
+const testSample = [2.668,-114.333,-1.908,4.786,25.707,-45.21,78,0]; // Curveball
+
+// predictButton.onclick = () => {
+//     predictButton.disabled = true;
+//     socket.emit('predictSample', testSample);
+// };
+
+// functions to handle socket events
+socket.on('connect', () => {
+    console.log("connected!!!")
+    // document.getElementById('waiting-msg').style.display = 'none';
+    // document.getElementById('trainingStatus').innerHTML = 'Training in Progress';
+});
+
+// socket.on('trainingComplete', () => {
+//     document.getElementById('trainingStatus').innerHTML = 'Training Complete';
+//     document.getElementById('predictSample').innerHTML = '[' + testSample.join(', ') + ']';
+//     // predictContainer.style.display = 'block';
+// });
+
+socket.on('predictResult', (result) => {
+    console.log("hello world")
+    console.log(result);
+    // plotPredictResult(result);
+});
+
+socket.on('disconnect', () => {
+    console.log("disconnected")
+});
+
+class LearnSubmissionForm extends React.Component {
     constructor(props) {
         super(props);
         this.form = {
@@ -21,16 +60,19 @@ class FoodSubmissionForm extends React.Component {
         };
     }
     onSubmit() {
-        axios.post(`/fnb_submission`, {
-            name: this.form.name,
-            email: this.form.email,
-            foodType: this.form.foodType,
-            notes: this.form.notes,
-            date: this.state.date
-        }).then(res => {
-            this.props.getData();
-        });
-        this.setShowToast(true);
+        // predictButton.disabled = true;
+        socket.emit('predictSample', testSample);
+
+        // axios.post(`/fnb_submission`, {
+        //     name: this.form.name,
+        //     email: this.form.email,
+        //     foodType: this.form.foodType,
+        //     notes: this.form.notes,
+        //     date: this.state.date
+        // }).then(res => {
+        //     this.props.getData();
+        // });
+        // this.setShowToast(true);
     }
 
     handleChange = e => {
@@ -119,4 +161,4 @@ class FoodSubmissionForm extends React.Component {
     }
 }
 
-export default FoodSubmissionForm;
+export default LearnSubmissionForm;

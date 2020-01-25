@@ -8,7 +8,11 @@ class Sponsor extends React.Component {
     render() {
         return (
             <div>
-                You can sponsor UML by ...
+                <div style={{paddingTop:'1em'}}>
+                    <Button variant="primary" onClick={click => this.onSubmit()}>
+                        Submit
+                    </Button>
+                </div>
             </div>
         )
     }
