@@ -15,7 +15,7 @@ class Home extends React.Component {
         return (
             <div style={{paddingTop:'2em' }}>
                 <h1>About Universal Machine Learning</h1>
-                <Container>
+                <Container >
                     <img src={tfjs} alt="website logo" />
                     <p>                    Without a doubt, machine learning can be an expensive undertaking, especially in the context of training neural networks. Complex models can take an immense amount of computing power to train. For those with __severely__ limited access to computing power, even the "simplest" models can be difficult or impossible to compute locally.
                     </p>
@@ -39,13 +39,17 @@ class Home extends React.Component {
                     <p>
                     1. Using Keras via the Python API. Users can write and compile `Sequential` models as they normally would and save them to the `.h5` format. Tensorflow.js then provides tools to convert `.h5` files into the Tensorflow.js "Layers format" which consists of:
                     </p>
-                    * A `.json` file containing the topology/architecture of model
-
-                    * A file in binary format containing the weights of the model (Tensorflow.js also allows you to load already-trained models)
-
+                    A `.json` file containing the topology/architecture of model
+                    <p>
+                    A file in binary format containing the weights of the model (Tensorflow.js also allows you to load already-trained models)
+                    </p>
+                        <p>
                     2. Alternatively, users can save and upload their model by directly writing it locally in Tensorflow.js and uploading the `.json` and binary files without any conversion.
+                        </p>
+                    <p>
+                        Users can then train/validate/test their models as they usually would through the interface.
 
-                    Users can then train/validate/test their models as they usually would through the interface.
+                    </p>
                     <p>
 
                     </p>
