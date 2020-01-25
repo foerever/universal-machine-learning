@@ -13,7 +13,7 @@ const csvPath = './abalone.csv';
 /**
  * Train a model with dataset, then save the model to a local folder.
  */
-async function run(epochs, batchSize, savePath) {
+async function run(epochs, batchSize, savePath, num_layers, activation_arr, units_arr) {
     const datasetObj = await createDataset('file://' + csvPath);
     //num_layers, activation_arr, units_arr
     const model = createModel([datasetObj.numOfColumns], num_layers, activation_arr, units_arr);
@@ -58,9 +58,11 @@ const args = parser.parseArgs();
 
 
 const file = fs.createWriteStream(csvPath);
+
 https.get(csvUrl, function(response) {
     response.pipe(file).on('close', async () => {
         //num_layers, activation_arr, units_arr
-        run(args.epochs, args.batch_size, args.savePath);
+        run(args.epochs, args.batch_size, args.savePath, 3, ["sigmoid", "sigmoid", "sigmoid"], [50,50,1]);
+        console.log(res);
     });
 });
