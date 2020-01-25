@@ -6,19 +6,13 @@ class ResultsTable extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            data: [],
-            columns: []
+            prediction: ""
         };
     }
 
-    componentDidMount() {
-        this.props.getData();
-    }
-
     componentWillReceiveProps(props) {
-        if (props.data.length !== this.state.data.length) {
-            this.setState({data: props.data, columns: props.columns});
-        }
+        console.log(props);
+        this.setState({prediction: props.prediction});
     }
 
     render() {
@@ -30,7 +24,7 @@ class ResultsTable extends React.Component {
 
         return (
             <div>
-                <Table bodyStyle={bodyStyle} className="table" columns={this.state.columns} data={this.state.data} />
+                {this.state.prediction}
             </div>
         )
     }
