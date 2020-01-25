@@ -18,6 +18,7 @@
     "bootstrap": "^4.3.1",
     "chart.js": "^2.8.0",
     "cross-env": "^6.0.3",
+    "esm": "^3.2.25",
     "express": "^4.17.1",
     "file-loader": "^5.0.2",
     "image-webpack-loader": "^6.0.0",
