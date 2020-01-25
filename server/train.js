@@ -13,7 +13,7 @@ const csvPath = './abalone.csv';
 /**
  * Train a model with dataset, then save the model to a local folder.
  */
-async function run(epochs, batchSize, savePath) {
+async function run(epochs, batchSize, savePath, num_layers, activation_arr, units_arr) {
     const datasetObj = await createDataset('file://' + csvPath);
     //num_layers, activation_arr, units_arr
     const model = createModel([datasetObj.numOfColumns], num_layers, activation_arr, units_arr);
@@ -25,15 +25,18 @@ async function run(epochs, batchSize, savePath) {
     const trainDataset = dataset.take(trainBatches);
     const validationDataset = dataset.skip(trainBatches);
     await model.save(savePath);
+
     const loadedModel = await tf.loadLayersModel(savePath + '/model.json');
     loadedModel.compile({optimizer: tf.train.sgd(0.01), loss: 'meanSquaredError'});
 
 
     await loadedModel.fitDataset(
-        trainDataset, {epochs: 2, validationData: validationDataset});
+        trainDataset, {epochs: 10, validationData: validationDataset});
 
+    const accuracy = await loadedModel.evaluateDataset(validationDataset, 10);
     const result = loadedModel.predict(
         tf.tensor2d([[0, 0.625, 0.495, 0.165, 1.262, 0.507, 0.318, 0.39]]));
+    console.log("accuracy: " + accuracy);
     console.log(
         'The actual test abalone age is 10, the inference result from the model is ' +
         result.dataSync());
@@ -61,6 +64,6 @@ const file = fs.createWriteStream(csvPath);
 https.get(csvUrl, function(response) {
     response.pipe(file).on('close', async () => {
         //num_layers, activation_arr, units_arr
-        run(args.epochs, args.batch_size, args.savePath);
+        run(args.epochs, args.batch_size, args.savePath, 3, ["sigmoid","sigmoid","sigmoid"], [50,50,1]);
     });
 });
