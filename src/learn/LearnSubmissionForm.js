@@ -55,7 +55,8 @@ class LearnSubmissionForm extends React.Component {
         };
         this.state = {
             showToast: false,
-            date: ''
+            date: '',
+            inputs: ['input-0']
         };
     }
     onSubmit() {
@@ -76,6 +77,11 @@ class LearnSubmissionForm extends React.Component {
 
     handleChange = e => {
         this.form[e.target.name] = e.target.value;
+    }
+
+    appendInput = () => {
+        var newInput = `input-${this.state.inputs.length}`;
+        this.setState(prevState => ({ inputs: prevState.inputs.concat([newInput]) }));
     }
 
     setShowToast = showToast => {
@@ -107,45 +113,39 @@ class LearnSubmissionForm extends React.Component {
                     </Card.Header>
                     <Card.Body>
                         <Form>
-                            <Form.Group controlId="formBasicNotes">
-                            <Form.Label>Name</Form.Label>
-                            <Form.Control
-                                size="sm"
-                                name='name'
-                                onChange={this.handleChange}
-                                placeholder="First and last name" />
+                            <Form.Group controlId="Model">
+                                <Form.Label>Model</Form.Label>
+                                <Form.Control as="select">
+                                    <option>CNN</option>
+                                    <option>MLP</option>
+                                    <option>GAN</option>
+                                </Form.Control>
                             </Form.Group>
 
-                            <Form.Group controlId="formBasicEmail">
-                                <Form.Label>Email address</Form.Label>
-                                <Form.Control
-                                    size="sm"
-                                    onChange={this.handleChange}
-                                    name='email'
-                                    type="email"
-                                    placeholder="Enter email" />
-                            </Form.Group>
+                            <div id="dynamicInput">
+                                {this.state.inputs.map(input => <Form.Group controlId="formBasicEmail">
+                                    <Form.Label>Layer</Form.Label>
+                                    <Form.Control
+                                        size="sm"
+                                        onChange={this.handleChange}
+                                        name='email'
+                                        type="email"
+                                        placeholder="Enter # Units for Layer" />
+                                </Form.Group>)}
+                            </div>
 
-                            <Form.Group controlId="formBasicFoodType">
-                            <Form.Label>Food Type</Form.Label>
-                            <Form.Control
-                                size="sm"
-                                onChange={this.handleChange}
-                                name='foodType'
-                                placeholder="Type of food like pasta, cake, etc" />
-                            </Form.Group>
+                            <Button variant="primary"
+                                    onClick={this.appendInput}>
+                                Add Layer
+                            </Button>
 
-                            <Form.Group controlId="formBasicNotes">
-                            <Form.Label>Notes</Form.Label>
-                            <Form.Control
-                                size="sm"
-                                onChange={this.handleChange}
-                                name='notes'
-                                placeholder="Notes on quantity of food, etc" />
+                            <Form.Group controlId="ActFunction">
+                                <Form.Label>Activation Function</Form.Label>
+                                <Form.Control as="select">
+                                    <option>Relu</option>
+                                    <option>TanH</option>
+                                </Form.Control>
                             </Form.Group>
-
-                            <Form.Label>Put in the day you are going</Form.Label>
-                            <DayPickerInput onDayChange={day => this.handleDateChange(day)} />
                             
                             <div style={{paddingTop:'1em'}}>
                                 <Button variant="primary" onClick={click => this.onSubmit()}>
