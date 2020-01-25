@@ -3,7 +3,10 @@ _Make machine learning and machine learning education accessible to all people r
 
 
 # Overview
-![image](public/tfjs_logo.png)
+<!-- ![image](public/tfjs_logo.png) -->
+<p align="center">
+  <img width="" height="200" src="public/tfjs_logo.png">
+</p>
 
 Without a doubt, machine learning can be an expensive undertaking, especially in the context of training neural networks. Complex models can take an immense amount of computing power to train. For those with __severely__ limited access to computing power, even the "simplest" models can be difficult or impossible to compute locally. 
 
