@@ -29,7 +29,7 @@ class App extends React.Component {
           <Nav.Link onClick={() => this.navigate('home')}>Home</Nav.Link>
           <Nav.Link onClick={() => this.navigate('learn')}>Learn</Nav.Link>
           <Nav.Link onClick={() => this.navigate('train')}>Train</Nav.Link>
-          <Nav.Link onClick={() => this.navigate('sponsor')}>Sponsor</Nav.Link>
+          {/* <Nav.Link onClick={() => this.navigate('sponsor')}>Sponsor</Nav.Link> */}
 
           
           </Navbar>
