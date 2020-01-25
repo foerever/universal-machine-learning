@@ -2,9 +2,9 @@ import React from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import explore from '../Assets/explore.svg';
-import connected_world from '../Assets/explore.svg';
-import around_the_world from '../Assets/explore.svg';
+// import explore from '../Assets/explore.svg';
+// import connected_world from '../Assets/explore.svg';
+// import around_the_world from '../Assets/explore.svg';
 
 class Home extends React.Component {
     constructor(props) {
@@ -18,7 +18,7 @@ class Home extends React.Component {
                 <Container>
                     <Row>
                         <Col className="section" xs={4} style={{textAlign: 'left'}}>
-                            <img alt="explore world" style={{width:'20em', height:'20em'}} src={connected_world}/>
+                            {/* <img alt="explore world" style={{width:'20em', height:'20em'}} src={connected_world}/> */}
                         </Col>
                         <Col className="section" xs={8}>
                             <div style={{paddingTop:'6em'}}>
@@ -33,12 +33,12 @@ class Home extends React.Component {
                             </div>
                         </Col>
                         <Col className="section" xs={4}>
-                            <img alt="explore world" style={{width:'20em', height:'20em'}} src={around_the_world}/>
+                            {/* <img alt="explore world" style={{width:'20em', height:'20em'}} src={around_the_world}/> */}
                         </Col>
                     </Row>
                     <Row>
                         <Col className="section" xs={4} style={{textAlign: 'left'}}>
-                            <img alt="explore world" style={{width:'20em', height:'20em'}} src={explore}/>
+                            {/* <img alt="explore world" style={{width:'20em', height:'20em'}} src={explore}/> */}
                         </Col>
                         <Col className="section" xs={8}>
                             <div style={{paddingTop:'8em'}}>
