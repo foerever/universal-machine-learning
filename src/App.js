@@ -5,6 +5,7 @@ import logo from './assets/logo.png';
 import Learn from './learn/Learn';
 import Home from './home/Home';
 import Sponsor from './sponsor/Sponsor';
+import Train from './train/Train'
 
 class App extends React.Component {
 
@@ -27,14 +28,17 @@ class App extends React.Component {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Nav.Link onClick={() => this.navigate('home')}>Home</Nav.Link>
           <Nav.Link onClick={() => this.navigate('learn')}>Learn</Nav.Link>
+          <Nav.Link onClick={() => this.navigate('train')}>Train</Nav.Link>
           <Nav.Link onClick={() => this.navigate('sponsor')}>Sponsor</Nav.Link>
+
           
         </Navbar>
         {this.state.route === 'home'
 			? <Home /> :
 				(this.state.route === 'learn'
-        		? <Learn />
-				: <Sponsor />)}
+        		? <Learn /> :
+                    (this.state.route === 'train'
+                ? <Train/> : <Sponsor />))}
       </div>
     );
   }
