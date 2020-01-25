@@ -4,6 +4,7 @@ _Make machine learning and machine learning education accessible to all people r
 
 # Overview
 ![image](public/tfjs_logo.png)
+
 Without a doubt, machine learning can be an expensive undertaking, especially in the context of training neural networks. Complex models can take an immense amount of computing power to train. For those with __severely__ limited access to computing power, even the "simplest" models can be difficult or impossible to compute locally. 
 
 While services like GCP and AWS exist to provide additional computing power, it's reasonable to assume that someone with especially low resources might not be able to afford these services in the long run. Additionally, the "free plans" for these platforms are still limited in features. For example, the _Always Free_ Tier on GCP, doesn't allow users to use GPU's or TPU's for free.
