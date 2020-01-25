@@ -13,7 +13,7 @@ const csvPath = './abalone.csv';
 /**
  * Train a model with dataset, then save the model to a local folder.
  */
-async function run(epochs, batchSize, savePath, num_layers, activation_arr, units_arr) {
+async function run(epochs, batchSize, savePath, num_layers, activation_arr, units_arr, jsonmodel) {
     const datasetObj = await createDataset('file://' + csvPath);
     //num_layers, activation_arr, units_arr
     const model = createModel([datasetObj.numOfColumns], num_layers, activation_arr, units_arr);
@@ -45,7 +45,7 @@ async function run(epochs, batchSize, savePath, num_layers, activation_arr, unit
     
 }
 
-async function training() {
+async function training(dataset, jsonmodel, res) {
 
     const parser = new argparse.ArgumentParser(
         {description: 'TensorFlow.js-Node Abalone Example.', addHelp: true});
@@ -65,15 +65,16 @@ async function training() {
     const args = parser.parseArgs();
     
     const file = fs.createWriteStream(csvPath);
-    var something = await https.get(csvUrl, async (res) => {
+    var something = await https.get(csvUrl, async (response) => {
 
-        res.pipe(file).on('close', async () => {
+        response.pipe(file).on('close', async () => {
             //num_layers, activation_arr, units_arr
-            let shit = await run(args.epochs, args.batch_size, args.savePath, 3, ["sigmoid","sigmoid","sigmoid"], [50,50,1]);
+            let shit = await run(args.epochs, args.batch_size, args.savePath, 3, ["sigmoid","sigmoid","sigmoid"], [50,50,1], jsonmodel);
             // process.stdout.write(shit);
             console.log(shit);
             // res.writeHead(200);
             // res.end(shit);
+            res.send(shit);
             return shit;
         });
     }).end();

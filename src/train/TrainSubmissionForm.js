@@ -3,9 +3,7 @@ import '../App.css';
 import { Form, Button, Card, Toast } from 'react-bootstrap';
 import toastLogo from '../assets/logo.png';
 import 'react-day-picker/lib/style.css';
-import FormData from 'form-data';
-import io from 'socket.io-client';
-const axios = require('axios');
+
 
 class TrainSubmissionForm extends React.Component {
     constructor(props) {
@@ -59,27 +57,7 @@ class TrainSubmissionForm extends React.Component {
 
     onSubmit() { 
         this.setShowToast(true);
-        this.submit(this.state.dataset, this.state.modeljson, this.state.weights);
-    }
-
-    submit (dataset, modeljson, weights) {
-        console.log("here")
-        const form = new FormData();
-
-        form.append('dataset', dataset === null ? null : dataset);
-        form.append('modeljson', modeljson === null ? null : modeljson);
-        form.append('weights', weights === null ? null : weights);
-
-        // form.append('model', model);
-        // form.append('layerarray', JSON.stringify(layerarray))
-        form.append('timestamp', new Date().toGMTString());
-        axios.post("http://localhost:8000/submit", form, {
-            headers: {
-                'Content-Type': 'multipart/form-data'
-            }
-        }).then(res => {
-            console.log(res);
-        });
+        this.props.submit(this.state.dataset, this.state.modeljson, this.state.weights);
     }
 
     appendInput = () => {

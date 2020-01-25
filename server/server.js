@@ -58,11 +58,11 @@ app.post('/submit', upload.fields([{name: 'dataset', maxCount: 1},
                                     {name: 'weights', maxCount: 1}
                                 ]), function (req, res, next) {
     console.log("im in the submit request")
-    console.log(req.files.dataset === null ? "null" : "not null");
-    var result = training();
+    console.log(req.files.modeljson === null ? "null" : "not null");
+    var result = training(req.files.dataset, req.files.modeljson, res);
     console.log("===================");
     console.log(result);
-    res.send(result);
+    // res.send(result);
     // req.files is array of `photos` files
     // req.body will contain the text fields, if there were any
 })
