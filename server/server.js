@@ -92,7 +92,7 @@ async function run() {
     io.emit('trainingComplete', true);
 }
 
-// run();
+run();
 
 
 
