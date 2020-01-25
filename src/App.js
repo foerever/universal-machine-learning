@@ -30,6 +30,7 @@ class App extends React.Component {
           <Nav.Link onClick={() => this.navigate('learn')}>Learn</Nav.Link>
           <Nav.Link onClick={() => this.navigate('train')}>Train</Nav.Link>
           <Nav.Link onClick={() => this.navigate('sponsor')}>Sponsor</Nav.Link>
+
           
           </Navbar>
         {this.state.route === 'home'
@@ -38,7 +39,6 @@ class App extends React.Component {
         		? <Learn /> :
                     (this.state.route === 'train'
                 ? <Train/> : <Sponsor />))}
-
       </div>
     );
   }

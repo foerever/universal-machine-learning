@@ -81,7 +81,7 @@ async function run() {
         });
     });
 
-    let numTrainingIterations = 10;
+    let numTrainingIterations = 1;
     for (var i = 0; i < numTrainingIterations; i++) {
         console.log(`Training iteration : ${i+1} / ${numTrainingIterations}`);
         await pitch_type.model.fitDataset(pitch_type.trainingData, {epochs: 1});
