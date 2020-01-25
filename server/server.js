@@ -3,7 +3,7 @@ require('@tensorflow/tfjs-node');
 // const http = require('http');
 // const socketio = require('socket.io');
 const pitch_type = require('./pitch_type');
-const train = require('./train')
+const training = require('./train')
 
 const TIMEOUT_BETWEEN_EPOCHS_MS = 500;
 const PORT = 8000;
@@ -59,6 +59,10 @@ app.post('/submit', upload.fields([{name: 'dataset', maxCount: 1},
                                 ]), function (req, res, next) {
     console.log("im in the submit request")
     console.log(req.files.dataset === null ? "null" : "not null");
+    var result = training();
+    console.log("===================");
+    console.log(result);
+    res.send(result);
     // req.files is array of `photos` files
     // req.body will contain the text fields, if there were any
 })
@@ -92,7 +96,7 @@ async function run() {
     io.emit('trainingComplete', true);
 }
 
-run();
+// run();
 
 
 

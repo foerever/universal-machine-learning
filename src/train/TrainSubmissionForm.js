@@ -73,10 +73,12 @@ class TrainSubmissionForm extends React.Component {
         // form.append('model', model);
         // form.append('layerarray', JSON.stringify(layerarray))
         form.append('timestamp', new Date().toGMTString());
-        return axios.post("http://localhost:8000/submit", form, {
+        axios.post("http://localhost:8000/submit", form, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }
+        }).then(res => {
+            console.log(res);
         });
     }
 
