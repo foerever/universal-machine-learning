@@ -1,6 +1,9 @@
 {
   "name": "workorder",
   "version": "0.1.0",
+  "engines": {
+    "node": "v12.10.0"
+  },
   "private": true,
   "dependencies": {
     "@babel/core": "^7.4.3",
