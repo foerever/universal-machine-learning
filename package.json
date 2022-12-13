@@ -20,7 +20,7 @@
     "cors": "^2.8.5",
     "cross-env": "^6.0.3",
     "esm": "^3.2.25",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "file-loader": "^5.0.2",
     "form-data": "^3.0.0",
     "image-webpack-loader": "^6.0.0",
